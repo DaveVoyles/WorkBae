@@ -9,6 +9,7 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 
 ##Getting Started
 1. Install Node.js[https://nodejs.org/en/download/](Node.js)
+2. Office Graph - Register for a developer key:
 2. Clone the repository with: 
 `git clone https://github.com/bitchwhocodes/WorkBae.git` or you can download too :) 
 3. Create a .env file at the root of the project. This project uses the dotenv node module. https://www.npmjs.com/package/dotenv. Your directory should look like this:
