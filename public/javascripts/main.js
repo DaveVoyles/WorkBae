@@ -50,9 +50,9 @@ $(document).ready(function(){
       console.log("Has the result"+result.result);
       console.log(result)
       $('#result').text("Your Bae is: "+result.result);
-      $('#result').removeClass("hide").addClass("show"); 
+      $('#result').removeClass("hide").addClass("show");
+      $('.status').addClass("hide"); 
   }
-  
   function addAudioFile(){
          var soundFile = document.createElement("audio");
         soundFile.preload = "auto";

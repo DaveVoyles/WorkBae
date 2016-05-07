@@ -4,8 +4,9 @@ var url = require('url');
 var async = require('async');
 var outlook = require("node-outlook");
 var token,email;
- var count = 0;
+var count = 0;
 var messages = [];
+var sentMessages = [];
 var baeFinder = require('../baefinder/bae');
 
 router.get('/', function(request, response, next) {
@@ -19,13 +20,14 @@ router.get('/', function(request, response, next) {
         function (callback) {
             console.log(count);
            
-            getMail(callback);
+            getSentMail(callback);
+            getMail(callback)
             count++;
         },
         function (err, n) {
             // 5 seconds have passed, n = 5
-            var result = baeFinder.determineBae(messages);
-            console.log(result);
+            var result = baeFinder.determineBae(messages,sentMessages);
+            // console.log(messages);
             response.json({"result":result});
             
            
@@ -71,7 +73,30 @@ function getMail(callback){
       });
     
 }
+function getSentMail(callback){
+    var skip = count*100;
+    var queryParams = {
+      '$top': 100,
+      '$skip':skip
+      // '$filter': "DateTimeReceived gt DateTime'2016-04-00T09:13:28'"
+    };
+    var url= "https://graph.microsoft.com/v1.0/me/mailFolders/sentItems/messages"
 
+    outlook.mail.getMessages({ token: token, userInfo: email, folderId:"sentItems", odataParams: queryParams}, 
+      function(error, result) {
+        if (error){
+          console.log('Get Messages returned an error: ' + error);
+          callback(error);
+        }
+        else if(result){
+          result.value.forEach(function(message) {
+            sentMessages.push(JSON.stringify(message));
+          });
+          callback();
+          
+        }
+    });
+  }
 
 module.exports = router;
 

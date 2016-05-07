@@ -11,15 +11,13 @@ var fs = require('fs');
 
 
 /* GET home page. */
-function determineBae(messages){
+function determineBae(messages, sentMessages){
    
-//   file = fs.readFileSync('public/temp.json').toString();
   file =JSON.stringify(messages);
-//   return(file);
-//   console.log(file)
+  fileSent = JSON.stringify(sentMessages);
+
   data = JSON.parse(file);
-//   data = data['value'];
-//   console.log(data);
+
   totalReceived= data.length;
   var From = {};
   var afterHoursReceived={};
@@ -43,180 +41,66 @@ function determineBae(messages){
       else{
           From[data[i]['From']['EmailAddress']['Name']] += 1;
       }
-      
-  }
-  var scores = {};
-  var scoresAfterHours = {};
-  for(var i=0; i<Object.keys(From).length; i++){
-      name = Object.keys(From)[i];
-      percentReceived = From[name]/totalReceived;
-      scores[name] = percentReceived;
-  }
-  for(var i=0; i<Object.keys(afterHoursReceived).length; i++){
-      name = Object.keys(afterHoursReceived)[i];
-      percentReceived = afterHoursReceived[name]/totalReceived;
-      scoresAfterHours[name] = percentReceived;
-  }
-  var totalScores={};
-
-  for(var i =0; i<Object.keys(scores).length; i++){
-      name = Object.keys(scores)[i];
-      totalScores[name] = scores[name];
-  }
-  var bool = false;
-  for(var i =0; i<Object.keys(scoresAfterHours).length;i++) {
-      name = Object.keys(scoresAfterHours)[i];
-      if(1 <= scoresAfterHours[name] <=2){
-          bool=true;
-          if(!totalScores[name]){
-              totalScores[name] = scoresAfterHours[name];
-          }
-          else{
-            totalScores[name] += scoresAfterHours[name];
-          }
-      }
-  }
-   var bae = Object.keys(totalScores)[0];
-   if(bool==true){
-      var min = Math.abs(2 - totalScores[Object.keys(totalScores)[0]]);
-      for(i =1; i<Object.keys(totalScores).length;i++){
-            name = Object.keys(totalScores)[i]
-         var diff = Math.abs(2 - totalScores[name])
-         if(diff< min){
-             bae = name;
-         }
-     }
-  }
-  else{
-        var min = Math.abs(1 - totalScores[Object.keys(totalScores)[0]]);
-
-        for(i =1; i<Object.keys(totalScores).length;i++){
-            name = Object.keys(totalScores)[i];
-            var diff = Math.abs(1 - totalScores[name]);
-            console.log(diff);
-            if(diff< min){
-                bae = name;
-            }
-         }
-  }
-  return(bae);
-
-//   if(bool==true){
-//       var min = Math.abs(2 - totalScores[Object.keys(totalScores)[0]]);
-//       for(i =1; i<Object.keys(totalScores).length;i++){
-//             name = Object.keys(totalScores)[i]
-//          var diff = Math.abs(2 - totalScores[name])
-//          if(diff< min){
-//              bae = name;
-//          }
-//      }
-//   }
-//   else{
-//         var min = Math.abs(1 - totalScores[Object.keys(totalScores)[0]]);
-
-//         for(i =1; i<Object.keys(totalScores).length;i++){
-//             name = Object.keys(totalScores)[i];
-//             var diff = Math.abs(1 - totalScores[name]);
-//             console.log(diff);
-//             if(diff< min){
-//                 bae = name;
-//             }
-//          }
-//   }
-    
-
-  
-//   var sent = {};
-// //   fileSent = fs.readFileSync('public/sent.json').toString();
-//   dataSent = JSON.parse(fileSent);
+  };
+//   console.log(From);    
+  var sent = {};
+  dataSent = JSON.parse(fileSent);
 //   dataSent = dataSent['value'];
-//   totalSent = dataSent.length;
-//   var totalAfterSent = 0
-//   afterHoursSent = {};
-//     for(var i = 0; i < dataSent.length; i++){
-//         emails = dataSent[i]['toRecipients']
-//         var date = convertDateTime(dataSent[i]['sentDateTime']).toString();
-//         var day = date.split(" ")[0];
-//         if(day =="Sat" || day =="Sun"){
-//             totalAfterSent+=1;
-//              for(var k =0; k<emails.length; k++){
-//                 if(!afterHoursSent[emails[k]['EmailAddress']['name']]){
-//                     afterHoursSent[emails[k]['EmailAddress']['name']] = 1;
-//                 }
-//                 else{
-//                     afterHoursSent[emails[k]['EmailAddress']['name']] += 1;
-//                 }
-//             }
-//         }
-//         for(var k =0; k<emails.length; k++){
-//             if(!sent[emails[k]['EmailAddress']['name']]){
-//                 sent[emails[k]['EmailAddress']['name']] = 1;
-//             }
-//             else{
-//                 sent[emails[k]['EmailAddress']['name']] += 1;
-//             }
-//         }
-//     }
-//   var scores= {};
-//   for(var i=0; i<Object.keys(sent).length; i++){
-//       name = Object.keys(sent)[i];
-//       if(From[name]!=null){
-//           percentReceived = From[name]/totalReceived;
-//           percentSent = sent[name]/totalSent;
-//           scores[name] = percentReceived/percentSent;         
-//       }     
-//   }
-//   var scoresAfterHours= {};
-//   for(var i=0; i<Object.keys(sent).length; i++){
-//       name = Object.keys(afterHoursSent)[i];
-//       if(afterHoursReceived[name]!=null){
-//           percentReceived = afterHoursReceived[name]/totalAfterReceived;
-//           percentSent = afterHoursSent[name]/totalAfterSent;
-//           scoresAfterHours[name] = percentReceived/percentSent;         
-//       }     
-//   }
-//   var totalScores = {};
-//   for(var i =0; i<Object.keys(scores).length; i++){
-//       name = Object.keys(scores)[i];
-//       totalScores[name] = scores[name];
-//   }
-//   var bool = false;
-//   for(var i =0; i<Object.keys(scoresAfterHours).length;i++) {
-//       name = Object.keys(scoresAfterHours)[i];
-//       if(1 <= scoresAfterHours[name] <=11){
-//           bool=true;
-//           if(!totalScores[name]){
-//               totalScores[name] = scoresAfterHours[name];
-//           }
-//           else{
-//             totalScores[name] += scoresAfterHours[name];
-//           }
-//       }
-//   }
-//   var bae = Object.keys(totalScores)[0];
+//   console.log(dataSent);
+  totalSent = dataSent.length;
+  var totalAfterSent = 0
+  afterHoursSent = {};
+  userName = "";
+  for(var i = 0; i < dataSent.length; i++){
+        dataSent[i]= JSON.parse(dataSent[i]);
+        userName = dataSent[i]['From']['EmailAddress']['Name'];
+        // console.log(Object.keys(dataSent[i]));
+        emails = dataSent[i]['ToRecipients'];
+        // console.log(dataSent[i]);
+        var date = convertDateTime(dataSent[i]['DateTimeSent']).toString();
+        var day = date.split(" ")[0];
+        if(day =="Sat" || day =="Sun"){
+            totalAfterSent+=1;
+             for(var k =0; k<emails.length; k++){
+                if(!afterHoursSent[emails[k]['EmailAddress']['Name']]){
+                    afterHoursSent[emails[k]['EmailAddress']['Name']] = 1;
+                }
+                else{
+                    afterHoursSent[emails[k]['EmailAddress']['Name']] += 1;
+                }
+            }
+        }
+        for(var k =0; k<emails.length; k++){
+            if(!sent[emails[k]['EmailAddress']['Name']]){
+                sent[emails[k]['EmailAddress']['Name']] = 1;
+            }
+            else{
+                sent[emails[k]['EmailAddress']['Name']] += 1;
+            }
+        }
+    };
+    var scores= {};
+    for(var i=0; i<Object.keys(sent).length; i++){
+        Name = Object.keys(sent)[i];
+        if(From[Name]!=null){
+            percentReceived = From[Name]/totalReceived;
+            percentSent = sent[Name]/totalSent;
+            scores[Name] = percentReceived*percentSent;         
+        }     
+    }
 
-//   if(bool==true){
-//       var min = Math.abs(2 - totalScores[Object.keys(totalScores)[0]]);
-//       for(i =1; i<Object.keys(totalScores).length;i++){
-//             name = Object.keys(totalScores)[i]
-//          var diff = Math.abs(2 - totalScores[name])
-//          if(diff< min){
-//              bae = name;
-//          }
-//      }
-//   }
-//   else{
-//         var min = Math.abs(1 - totalScores[Object.keys(totalScores)[0]]);
-
-//         for(i =1; i<Object.keys(totalScores).length;i++){
-//             name = Object.keys(totalScores)[i];
-//             var diff = Math.abs(1 - totalScores[name]);
-//             console.log(diff);
-//             if(diff< min){
-//                 bae = name;
-//             }
-//          }
-//   }
+    var bae = Object.keys(scores)[0];
+    console.log(userName);
+    var min = Math.abs(1 - scores[Object.keys(scores)[0]]);
+    delete Object.keys(scores)[userName];
+    for(i =1; i<Object.keys(scores).length;i++){
+        Name = Object.keys(scores)[i];
+        var diff = Math.abs(1 - scores[Name]);
+        if(diff< min){
+            bae=Name;
+        }
+    }
+    return bae;
 };
 
 function convertDateTime(dt){
