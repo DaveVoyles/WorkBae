@@ -5,6 +5,7 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 ##Dependancies
 1. Variety of node modules listed in the package.json
 2. Office365 email account
+
 3. .env file that includes the client id and client secret for the Office Graph
 
 ##Getting Started
@@ -18,3 +19,16 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 `CLIENT_ID, CLIENT_SECRET` and `CALLBACK_URL`
 ![Env Screen](readmeimages/envscreen.png). The callback url points to an "authorize" route, which has been created. 
 
+##Registering for a developer key
+1. Go to the [Application Registration Portal](https://apps.dev.microsoft.com/Disambiguation?ru=https%3a%2f%2fapps.dev.microsoft.com%2f#/appList) and Sign in with your Office 365 account. 
+![Env Screen](readmeimages/login.png)
+2. Click 'Add an Application'
+![Env Screen](readmeimages/addApplication.png)
+3. Generate New Key Pair and save the password given.
+![Env Screen](readmeimages/generatekeypair.png)
+4. Click Add Platform 
+![Env Screen](readmeimages/addplatform.png)
+5. Select the web option
+![Env Screen](readmeimages/addweb.png)
+6. Add the redirect URL that you would like to use. This is the URL you will connect with locally as well as once you deploy.
+![Env Screen](readmeimages/redirecturl.png)
