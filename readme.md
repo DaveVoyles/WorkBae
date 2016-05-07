@@ -2,7 +2,7 @@
 
 Work Bae analyzes your work email to determine your main squeeze (at work, that is.)  Stare into Madam Pug-Life’s crystal ball, connect your Outlook account, and watch as Work Bae’s compatibility-based algorithm reveals your [https://en.wikipedia.org/wiki/Work_spouse](“wusband”) or [https://en.wikipedia.org/wiki/Work_spouse](“work wife ”). Workbae utilizes node.js, the Express Framework and the Office Graph APIs.
 
-[![WorkBae Preview](/readmeimages/workbae.PNG)](https://onedrive.live.com/redir?resid=3F51B05D26764AB8!36895&authkey=!ABbLn9f56Wrd0MA&ithint=video%2cmp4 "WorkBae Preview")
+[![WorkBae Preview](/readmeimages/workbae.PNG)](https://youtu.be/0ZSlTYdQuLE "WorkBae Preview- Click here!")
 
 ##Dependancies
 1. Variety of node modules listed in the package.json
@@ -10,7 +10,7 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 3. .env file that includes the client id and client secret for the Office Graph
 
 ##Getting Started
-1. Install Node.js[https://nodejs.org/en/download/](Node.js)
+1. Install Node.js [https://nodejs.org/en/download/](Node.js)
 2. Office Graph - Register for a developer key:
 2. Clone the repository with: 
 `git clone https://github.com/bitchwhocodes/WorkBae.git` or you can download too :) 
