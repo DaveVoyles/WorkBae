@@ -24,8 +24,8 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 ![Env Screen](readmeimages/login.png)
 2. Click 'Add an Application'
 ![Env Screen](readmeimages/addApplication.png)
-3. Generate New Key Pair and save the password given.
-![Env Screen](readmeimages/generatekeypair.png)
+3. Generate a New Password and save the password given.
+![Env Screen](readmeimages/generatepassword.png)
 4. Click Add Platform 
 ![Env Screen](readmeimages/addplatform.png)
 5. Select the web option
