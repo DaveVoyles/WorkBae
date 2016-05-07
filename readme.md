@@ -16,5 +16,5 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 ![Env File](readmeimages/envfile.png)
 4. Populate your .env file with three variables:
 `CLIENT_ID, CLIENT_SECRET` and `CALLBACK_URL`
-![Env Screen](readmeimages/envscreen.png)
+![Env Screen](readmeimages/envscreen.png). The callback url points to an "authorize" route, which has been created. 
 
