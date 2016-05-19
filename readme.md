@@ -18,7 +18,9 @@ Work Bae analyzes your work email to determine your main squeeze (at work, that 
 ![Env File](readmeimages/envfile.png)
 4. Populate your .env file with three variables:
 `CLIENT_ID, CLIENT_SECRET` and `CALLBACK_URL`
-![Env Screen](readmeimages/envscreen.png). The callback url points to an "authorize" route, which has been created. 
+![Env Screen](readmeimages/envscreen.png)
+
+The callback url points to an "authorize" route, which has been created. 
 
 ##Registering for a developer key
 1. Go to the [Application Registration Portal](https://apps.dev.microsoft.com/Disambiguation?ru=https%3a%2f%2fapps.dev.microsoft.com%2f#/appList) and Sign in with your Office 365 account. 
